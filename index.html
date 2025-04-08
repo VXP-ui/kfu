@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kfu's Profile</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        discord: {
+                            primary: '#5865F2',
+                            dark: '#36393f',
+                            darker: '#2f3136',
+                            darkest: '#202225',
+                            lighten: '#40444b'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(88, 101, 242, 0.4);
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .glass-effect {
+            background: rgba(32, 34, 37, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+        }
+
+        .status-online {
+            background-color: #43b581;
+        }
+
+        .btn-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-hover:hover::after {
+            left: 100%;
+        }
+
+        .banner-image {
+            background-size: cover;
+            background-position: center;
+            height: 180px;
+        }
+
+        @media (max-width: 640px) {
+            .banner-image {
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="particles-container" id="particles"></div>
+    <div class="container mx-auto p-4 max-w-4xl">
+        <div class="relative mb-20 sm:mb-24">
+            <div 
+                class="banner-image rounded-t-lg" 
+                id="banner"
+                style="background-image: url('https://i.imgur.com/4LBITnP.png');">
+            </div>
+
+            <div class="absolute -bottom-16 left-6">
+                <div class="relative">
+                    <img 
+                        id="profile-pic" 
+                        src="https://i.imgur.com/wjpUJj8.png" 
+                        alt="Discord Profile" 
+                        class="w-32 h-32 rounded-full border-4 border-discord-darkest"
+                    >
+                    <div class="absolute bottom-1 right-1 w-6 h-6 rounded-full status-online border-4 border-discord-darkest"></div>
+                </div>
+            </div>
+            
+            <div class="absolute -bottom-16 left-44 sm:left-44">
+                <h1 id="username" class="text-xl font-bold text-white">Username</h1>
+                <p id="discriminator" class="text-gray-400">username#0000</p>
+            </div>
+        </div>
+      
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+           
+            <div class="col-span-2">
+                <div class="glass-effect rounded-lg p-6">
+                    <h2 class="text-xl font-bold text-discord-primary mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        About Me
+                    </h2>
+                    <div id="about-content" class="space-y-3 text-gray-300">
+                        <p>Hi there! This is your Discord profile showcase. Update this section with information about yourself.</p>
+                        <p>Some things you might want to include:</p>
+                        <ul class="list-disc list-inside space-y-1 pl-4">
+                            <li>Your interests and hobbies</li>
+                            <li>Programming languages or technologies you know</li>
+                            <li>Fun facts about yourself</li>
+                            <li>Your Discord server roles or activities</li>
+                        </ul>
+                    </div>
+                </div>
+                
+             
+                <div class="glass-effect rounded-lg p-6 mt-6">
+                    <h2 class="text-xl font-bold text-discord-primary mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zm0 16a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
+                        Discord Status
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-discord-darker rounded-lg p-4 transition-transform hover:scale-105">
+                            <div class="text-sm text-gray-400">Discord Since</div>
+                            <div id="discord-since" class="text-lg font-medium">July 2022</div>
+                        </div>
+                        <div class="bg-discord-darker rounded-lg p-4 transition-transform hover:scale-105">
+                            <div class="text-sm text-gray-400">Server Count</div>
+                            <div id="server-count" class="text-lg font-medium">Enough Servers</div>
+                        </div>
+                        <div class="bg-discord-darker rounded-lg p-4 transition-transform hover:scale-105">
+                            <div class="text-sm text-gray-400">Status</div>
+                            <div id="current-status" class="text-lg font-medium flex items-center">
+                                <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                                Online
+                            </div>
+                        </div>
+                        <div class="bg-discord-darker rounded-lg p-4 transition-transform hover:scale-105">
+                            <div class="text-sm text-gray-400">Activity</div>
+                            <div id="activity" class="text-lg font-medium">Rotting</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          
+            <div class="col-span-1">
+                <div class="glass-effect rounded-lg p-6">
+                    <h2 class="text-xl font-bold text-discord-primary mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path></svg>
+                        Connect With Me
+                    </h2>
+                    <div class="space-y-3">
+                        
+                        <a id="discord-link" href="#" target="_blank" class="btn-hover block bg-discord-primary hover:bg-opacity-80 text-white font-bold rounded-lg p-3 text-center transition-all">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                                    <path fill="#ffffff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                                </svg>
+                                Discord Profile
+                            </div>
+                        </a>
+                        
+                        <a id="roblox-link" href="#" target="_blank" class="btn-hover block bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-lg p-3 text-center transition-all">
+                            <div class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill="#ffffff" d="M5.164 1.645a10.008 10.008 0 0 0-2.31 4.464c3.156.979 5.492 3.781 5.492 7.172 0 3.396-2.336 6.203-5.492 7.172.478 1.684 1.29 3.221 2.31 4.464 4.092-1.305 7.066-5.168 7.066-9.636 0-4.47-2.974-8.33-7.066-9.636zm13.676 0c-4.091 1.305-7.066 5.167-7.066 9.636 0 4.468 2.974 8.33 7.066 9.636a10.008 10.008 0 0 0 2.31-4.464c-3.156-.97-5.492-3.777-5.492-7.172 0-3.39 2.336-6.194 5.492-7.172a10.006 10.006 0 0 0-2.31-4.464z"/>
+                                </svg>
+                                Roblox Profile
+                            </div>
+                        </a>
+                        
+                        <div class="mt-6">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-200">My Discord Servers</h3>
+                            <div id="server-links" class="space-y-2">
+                                <a href="#" target="_blank" class="btn-hover flex items-center bg-discord-darker hover:bg-discord-lighten rounded-lg p-2 transition-all">
+                                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-2">
+                                        <span class="text-xs font-bold">S1</span>
+                                    </div>
+                                    <span>Server Name 1</span>
+                                </a>
+                                <a href="#" target="_blank" class="btn-hover flex items-center bg-discord-darker hover:bg-discord-lighten rounded-lg p-2 transition-all">
+                                    <div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-2">
+                                        <span class="text-xs font-bold">S2</span>
+                                    </div>
+                                    <span>Server Name 2</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                      
+                        <div class="mt-6">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-200">My Discord Bots</h3>
+                            <div id="bot-links" class="space-y-2">
+                                <a href="#" target="_blank" class="btn-hover flex items-center bg-discord-darker hover:bg-discord-lighten rounded-lg p-2 transition-all">
+                                    <div class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center mr-2">
+                                        <span class="text-xs font-bold">B1</span>
+                                    </div>
+                                    <span>Bot Name 1</span>
+                                    <span class="ml-auto bg-green-600 text-white text-xs px-2 py-1 rounded">Add</span>
+                                </a>
+                                <a href="#" target="_blank" class="btn-hover flex items-center bg-discord-darker hover:bg-discord-lighten rounded-lg p-2 transition-all">
+                                    <div class="w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center mr-2">
+                                        <span class="text-xs font-bold">B2</span>
+                                    </div>
+                                    <span>Bot Name 2</span>
+                                    <span class="ml-auto bg-green-600 text-white text-xs px-2 py-1 rounded">Add</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-10 text-center text-gray-400 text-sm">
+            <p>© 2025 - Created by virtue.fu for myself</p>
+        </div>
+    </div>
+
+    <script>
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        const particlesContainer = document.getElementById('particles');
+        const numParticles = 50;
+
+        for (let i = 0; i < numParticles; i++) {
+            const size = Math.random() * 5 + 1;
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+            
+            const animDuration = Math.random() * 10 + 10;
+            const animDelay = Math.random() * 5;
+            particle.style.animationDuration = `${animDuration}s`;
+            particle.style.animationDelay = `${animDelay}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        function updateProfile(data) {
+            document.getElementById('username').textContent = data.username;
+            document.getElementById('discriminator').textContent = data.discriminator;
+            document.getElementById('profile-pic').src = data.avatar;
+            document.getElementById('banner').style.backgroundImage = `url('${data.banner}')`;
+            
+            document.getElementById('about-content').innerHTML = data.about;
+            
+            document.getElementById('discord-since').textContent = data.discordSince;
+            document.getElementById('server-count').textContent = data.serverCount;
+            document.getElementById('current-status').innerHTML = `
+                <span class="w-3 h-3 bg-${data.statusColor}-500 rounded-full mr-2"></span>
+                ${data.status}
+            `;
+            document.getElementById('activity').textContent = data.activity;
+            
+            document.getElementById('discord-link').href = data.discordLink;
+            document.getElementById('roblox-link').href = data.robloxLink;
+
+            const serverLinksContainer = document.getElementById('server-links');
+            serverLinksContainer.innerHTML = '';
+            
+            data.servers.forEach((server, index) => {
+                const serverEl = document.createElement('a');
+                serverEl.href = server.link;
+                serverEl.target = "_blank";
+                serverEl.className = "btn-hover flex items-center bg-discord-darker hover:bg-discord-lighten rounded-lg p-2 transition-all";
+                
+                let serverInitial = server.name.substring(0, 2);
+                let bgColor = index % 2 === 0 ? 'bg-gray-700' : 'bg-gray-600';
+                
+                serverEl.innerHTML = `
+                    <div class="w-8 h-8 rounded-full ${bgColor} flex items-center justify-center mr-2">
+                        <span class="text-xs font-bold">${serverInitial}</span>
+                    </div>
+                    <span>${server.name}</span>
+                `;
+                
+                serverLinksContainer.appendChild(serverEl);
+            });
+            
+            const botLinksContainer = document.getElementById('bot-links');
+            botLinksContainer.innerHTML = '';
+            
+            data.bots.forEach((bot, index) => {
+                const botEl = document.createElement('a');
+                botEl.href = bot.addLink;
+                botEl.target = "_blank";
+                botEl.className = "btn-hover flex items-center bg-discord-darker hover:bg-discord-lighten rounded-lg p-2 transition-all";
+                
+                const colors = ['blue-900', 'purple-900', 'indigo-900', 'green-900'];
+                const colorClass = `bg-${colors[index % colors.length]}`;
+                
+                botEl.innerHTML = `
+                    <div class="w-8 h-8 rounded-full ${colorClass} flex items-center justify-center mr-2">
+                        <span class="text-xs font-bold">${bot.name.substring(0, 1)}</span>
+                    </div>
+                    <span>${bot.name}</span>
+                    <span class="ml-auto bg-green-600 text-white text-xs px-2 py-1 rounded">Add</span>
+                `;
+                
+                botLinksContainer.appendChild(botEl);
+            });
+        }
+
+        const myDiscordProfile = {
+            username: "virtue.fu",
+            discriminator: "virtue.fu#0000",
+            avatar: "https://cdn.discordapp.com/avatars/1000483610190675988/09c09f2b3aec1de25741791baba5bedc.webp?size=1024&width=640&height=640", 
+            banner: "https://cdn.discordapp.com/attachments/1315179139594195057/1348891519175626795/6804e656e0e101f78e02d38ac13de922.gif ", 
+            about: `
+                <p>Hi there! I'm kfu</p>
+                <p>Some things about me:</p>
+                <ul class="list-disc list-inside space-y-1 pl-4">
+                    <li>I love coding and creating Discord bots</li>
+                    <li>I play Roblox and other games</li>
+                    <li>i like boobs a lot <3</li>
+                    <li>I manage a few Discord communities</li>
+                </ul>
+            `,
+            discordSince: "July 2022",
+            serverCount: "Enough Servers",
+            status: "Online",
+            statusColor: "green",
+            activity: "Rotting",
+            discordLink: "https://discord.com/users/1000483610190675988", 
+            robloxLink: "https://www.roblox.com/users/3400497864/profile", 
+            servers: [
+                {
+                    name: "Aurora Kingdom",
+                    link: "https://discord.gg/aurorakingdom" 
+                },
+                {
+                    name: "Exovyn, A new server looking for members!",
+                    link: "https://discord.gg/JxZDmBNGw8" 
+                }
+            ],
+            bots: [
+                {
+                    name: "Exovyn Dev",
+                    addLink: "https://discord.com/oauth2/authorize?client_id=1352842209648705628" 
+                },
+                {
+                    name: "Exovyn Mocha",
+                    addLink: "https://discord.com/oauth2/authorize?client_id=1341512727411167315"
+                }
+            ]
+        };
+
+        updateProfile(myDiscordProfile);
+
+        document.querySelectorAll('.btn-hover').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.classList.add('animate-pulse-slow');
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.classList.remove('animate-pulse-slow');
+            });
+        });
+    </script>
+</body>
+</html>
